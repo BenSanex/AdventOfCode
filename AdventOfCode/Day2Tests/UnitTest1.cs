@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.Diagnostics.Tracing;
+using System.Linq;
 using App;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -74,6 +76,17 @@ namespace Day2Tests
 
             Assert.IsFalse(_counter.HasDouble(counts));
             Assert.IsTrue(_counter.HasTriplet(counts));
+        }
+
+        [TestMethod]
+        public void FindsSingleDifferences()
+        {
+            DifferenceFinder finder = new DifferenceFinder();
+            var testList = new List<string>() {"abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz"};
+            var result = finder.FindStringsWithOneDifference(testList);
+
+            var expected = "fgij";
+            Assert.AreEqual(expected, result.Single());
         }
     }
 }
